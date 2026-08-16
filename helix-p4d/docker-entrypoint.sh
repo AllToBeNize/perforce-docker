@@ -68,7 +68,7 @@ fi
 
 # make sure p4d is not started after initialization
 echo "Stopping local-only p4d server..."
-gosu perforce p4dctl stop "${P4NAME}" &>/dev/null
+p4dctl stop "${P4NAME}"
 
 # exec docker command
 exec "$@"

@@ -3,11 +3,11 @@
 set -e
 
 # check if p4d service is already configured
-if gosu perforce p4dctl list 2>/dev/null | grep -q "${P4NAME}"; then
+if p4dctl list 2>/dev/null | grep -q "${P4NAME}"; then
     echo "Starting p4d server in local-only mode..."
 
     # p4d running with localhost-only binding is used in other scripts (e.g. to setup triggers)
-    if ! { error=$(gosu perforce p4dctl start "${P4NAME}" 2>&1 >&3); } 3>&1; then
+    if ! { error=$(p4dctl start "${P4NAME}" 2>&1 >&3); } 3>&1; then
         >&2 echo "${error}"
         exit 1
     fi
